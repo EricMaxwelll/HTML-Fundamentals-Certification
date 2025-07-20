@@ -1,31 +1,25 @@
-//- Include Local Data --------------------------------------------------------------------->
+//- Include Local Data ----------------------------------------------------------------------->
 - const base = ""
 
 
-//- Include Head   --------------------------------------------------------------------->
+//- Include Head   --------------------------------------------------------------------------->
 include ../includes/head
 
-<!-- Contenedor Principal -->
+
+//- 🏠 Sección: Portada Homepage ------------------------------------------------------------->
+
+
+
 <main class="content">
 
 
-    <!-- Hero Section: sección principal visual que aparece al entrar al sitio -->
-    <section class="hero">
 
-        <!-- Imagen decorativa que representa el ambiente festivo -->
-        <img src="#{base}assets/img/icons/mirror_ball.webp" width="140" alt="Bola de Fiesta Animada">
-
-        <!-- Título principal que capta la atención del visitante -->
-        <h1>La noche nunca termina</h1>
-
-        <!-- Subtítulo breve que refuerza el concepto del sitio -->
-        <p class="tagline">Tu acceso VIP al mejor underground electrónico</p>
+    //- 🏠 Hero Section
+    +hero_section("assets/img/icons/mirror_ball.webp", "La noche nunca termina", "Tu acceso VIP al mejor underground electrónico")
 
 
-    </section>
 
-
-    <!-- Sección de búsqueda principal: permite filtrar eventos -->
+    //- 🏠 Busqueda de eventos
     <section class="main-search">
 
         <!-- Campo de texto para escribir el nombre del evento -->
@@ -52,7 +46,9 @@ include ../includes/head
 
     </section>
 
-    <!-- Sección de estadísticas: muestra números impresionantes de la plataforma -->
+
+
+    //- 🏠 Prueba Social Numérica
     <section class="stats-section">
 
 
@@ -88,7 +84,7 @@ include ../includes/head
     </section>
 
 
-    <!-- Sección de géneros musicales: muestra los estilos que organizamos -->
+    //- 🏠 Categorías de Eventos
     <section class="genres-section">
 
         <!-- Título de la sección -->
@@ -97,48 +93,19 @@ include ../includes/head
         <!-- Grid de 3 columnas con los géneros principales -->
         <div class="genres-grid">
 
-            <!-- Género 1: Techno -->
-            <div class="genre-card">
-                <h3 class="genre-name">Techno</h3>
-                <p class="genre-description">Beats hipnóticos underground que te transportan a otro mundo</p>
-            </div>
-
-            <!-- Género 2: House -->
-            <div class="genre-card">
-                <h3 class="genre-name">House</h3>
-                <p class="genre-description">Grooves contagiosos que hacen vibrar cada rincón</p>
-            </div>
-
-            <!-- Género 3: Trance -->
-            <div class="genre-card">
-                <h3 class="genre-name">Trance</h3>
-                <p class="genre-description">Viajes sonoros épicos llenos de energía celestial</p>
-            </div>
-
-            <!-- Género 4: Drum & Bass -->
-            <div class="genre-card">
-                <h3 class="genre-name">Drum & Bass</h3>
-                <p class="genre-description">Energía pura a 175 BPM que acelera tu corazón</p>
-            </div>
-
-            <!-- Género 5: Progressive -->
-            <div class="genre-card">
-                <h3 class="genre-name">Progressive</h3>
-                <p class="genre-description">Evolución musical que construye momentos únicos</p>
-            </div>
-
-            <!-- Género 6: Dubstep -->
-            <div class="genre-card">
-                <h3 class="genre-name">Dubstep</h3>
-                <p class="genre-description">Drops explosivos que rompen todas las reglas</p>
-            </div>
+            <!-- ⚠️ La identación en MUY IMPORTANTE ⚠️ -->
+            each value, index in events.category_events
+                +card_event_category(value.name, value.description)
 
         </div>
+
 
     </section>
 
 
-    <!-- 🎉 Sección de eventos destacados: muestra las próximas fiestas imperdibles -->
+
+
+    //- 🏠 Grilla de Eventos
     <section class="featured-events">
 
         <!-- 🏷️ Título principal de la sección -->
@@ -147,95 +114,10 @@ include ../includes/head
         <!-- 📦 Contenedor en formato grid con 3 columnas adaptables -->
         <div class="events-grid">
 
-            <!-- 🎫 Evento 1: Warehouse Sessions -->
-            <a href="#" class="event-card"> <!-- La tarjeta completa es clickeable -->
-                <div class="event-image"></div> <!-- Imagen del evento (relleno por ahora) -->
-                <div class="event-info">
-                    <h3 class="event-title">Warehouse Sessions</h3>
-                    <div class="event-details">
-                        <p>Sábado 12 de Julio</p>
-                        <p>Underground Club</p>
-                        <p>22:00 - 06:00</p>
-                        <p>Techno Underground</p>
-                    </div>
-                    <div class="event-price">Desde $25.000</div>
-                </div>
-            </a>
+            <!-- Todos los Eventos -->
+            each value, index in events.inperson_events
+                +card_event( value.name, value.date, value.place, `${value.start_time} - ${value.end_time}`, value.category, value.price_from)
 
-            <!-- 🎫 Evento 2: Neon Nights -->
-            <a href="#" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-info">
-                    <h3 class="event-title">Neon Nights</h3>
-                    <div class="event-details">
-                        <p>Viernes 18 de Julio</p>
-                        <p>Rooftop Paradise</p>
-                        <p>23:00 - 05:00</p>
-                        <p>Progressive House</p>
-                    </div>
-                    <div class="event-price">Desde $45.000</div>
-                </div>
-            </a>
-
-            <!-- 🎫 Evento 3: Bass Overdrive -->
-            <a href="#" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-info">
-                    <h3 class="event-title">Bass Overdrive</h3>
-                    <div class="event-details">
-                        <p>Domingo 20 de Julio</p>
-                        <p>Industrial Zone</p>
-                        <p>21:00 - 04:00</p>
-                        <p>Drum & Bass</p>
-                    </div>
-                    <div class="event-price">Desde $55.000</div>
-                </div>
-            </a>
-
-            <!-- 🎫 Evento 4: Sunset Rave -->
-            <a href="#" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-info">
-                    <h3 class="event-title">Sunset Rave</h3>
-                    <div class="event-details">
-                        <p>Sábado 25 de Julio</p>
-                        <p>Beach Club</p>
-                        <p>18:00 - 02:00</p>
-                        <p>Trance & Progressive</p>
-                    </div>
-                    <div class="event-price">Desde $75.000</div>
-                </div>
-            </a>
-
-            <!-- 🎫 Evento 5: Electric Storm -->
-            <a href="#" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-info">
-                    <h3 class="event-title">Electric Storm</h3>
-                    <div class="event-details">
-                        <p>Viernes 31 de Julio</p>
-                        <p>Mega Arena</p>
-                        <p>20:00 - 06:00</p>
-                        <p>Dubstep & Bass</p>
-                    </div>
-                    <div class="event-price">Desde $120.000</div>
-                </div>
-            </a>
-
-            <!-- 🎫 Evento 6: Deep House Vibes -->
-            <a href="#" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-info">
-                    <h3 class="event-title">Deep House Vibes</h3>
-                    <div class="event-details">
-                        <p>Sábado 2 de Agosto</p>
-                        <p>Secret Location</p>
-                        <p>22:30 - 05:30</p>
-                        <p>Deep House</p>
-                    </div>
-                    <div class="event-price">Desde $35.000</div>
-                </div>
-            </a>
 
         </div>
 
@@ -244,30 +126,25 @@ include ../includes/head
 
 
 
-
 </main>
 
+//- Local Widget Components  ------------------------------------------------------------------->
 
 
 
-
-//- Local Widget Components  --------------------------------------------------------------------->
-
-
-
-//- Local Libs  ---------------------------------------------------------------------------------->
+//- Local Libs  -------------------------------------------------------------------------------->
 
 
 
-//- Local Configs  ------------------------------------------------------------------------------->
+//- Local Configs  ----------------------------------------------------------------------------->
 
 
 
-//- Local JS Script ------------------------------------------------------------------------------->
+//- Local JS Script ---------------------------------------------------------------------------->
 script.
-console.log("Hola Mundo desde 🎟️ TicketPass 😎")
+    console.log("Hola Mundo desde 🎟️ TicketPass 😎")
 
 
-//- Include Footer  ------------------------------------------------------------------------------>
+//- Include Footer  ---------------------------------------------------------------------------->
 include ../includes/footer
 
